@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="blog.dao.BlogDao">
+	<resultMap id="BaseResultMap" type="blog.domain.PostForm">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="CHAR" />
+		<result column="content" property="content" jdbcType="CHAR" />
+		<result column="tags" property="tags" jdbcType="CHAR" />
+	</resultMap>
+	<select id="selectAllBlog" resultMap="BaseResultMap">
+		SELECT * FROM PostForm
+	</select>
+	
+	<select id="deleteBlog" parameterType="int" resultMap="BaseResultMap">
+		DELETE FROM PostForm WHERE id=#{id}
+	</select>
+	
+	<select id="createNewBlog" parameterType="blog.domain.PostForm" resultMap="BaseResultMap">
+		INSERT INTO  PostForm (title, content, tags) VALUES (#{postForm.title}, #{postForm.content}, #{postForm.tags})
+	</select>
+	
+	<select id="selectBlogById" parameterType="int" resultMap="BaseResultMap">
+		SELECT * FROM PostForm WHERE id=#{id}
+	</select>
+	
+	<select id="updateBlogById" parameterType="int" resultMap="BaseResultMap">
+		UPDATE PostForm SET title = #{postForm.title}, content = #{postForm.content}, tags = #{postForm.tags} WHERE id=#{id}
+	</select>
+</mapper>

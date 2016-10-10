@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head>  
+    <title></title>  
+    <script src="../js/jquery-2.2.0.js" type="text/javascript"></script>  
+    <script type="text/javascript">  
+    $(document).ready(function(){ 
+        $.ajax({  
+            //请求方式为get  
+            type:"GET",  
+            //json文件位置  
+            url:"/blog/common/",  
+            //返回数据格式为json  
+            dataType: "json",  
+            //请求成功完成后要执行的方法  
+            success: function(tt){ 
+            	$("#list").html(''); 
+            	var json = eval(tt); //数组
+            	$.each(json, function (index, item) {  
+                    //循环获取数据    
+                    var name = json[index].title;  
+                    var idnumber = json[index].content;  
+                    var sex = json[index].tags;  
+                    $("#list").html($("#list").html() + "<br>" + name + " - " + idnumber + " - " + sex + "<br/>");  
+                });
+            }  
+        })  
+
+}); 
+
+
+    </script>  
+</head>  
+<body>  
+<h1>test</h1>
+    <ul id="list">  
+    </ul>  
+</body>  
+</html>  

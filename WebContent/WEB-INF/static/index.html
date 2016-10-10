@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  
+<!-- Mirrored from v3.bootcss.com/examples/jumbotron/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 Nov 2015 09:21:26 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="刘强的个人博客">
+    <meta name="author" content="liuqiang">
+
+
+    <title>刘强的博客</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">刘强的博客</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" action='blog/j_spring_security_check' method='POST'>
+            <div class="form-group">
+              <input name="j_username" type="text" placeholder="UserName" class="form-control">
+            </div>
+            <div class="form-group">
+              <input name='j_password' type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">管理员登录</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Watch and Learn</h1>
+        <p>This is a blog created by liuqiang. Using HTML+Bootstrap as front-end, and using Spring+ SpringMVC as back-end.</p>
+        <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      
+      <div class="row" id="row">
+
+        
+      </div>
+    
+      <hr>
+      <hr>
+      <footer>
+        <p>&copy;刘强 lq08025107@163.com</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/jquery-2.2.0.js"></script>
+    <script src="../dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">  
+    $(document).ready(function(){ 
+        $.ajax({  
+            //请求方式为get  
+            type:"GET",  
+            //json文件位置  
+            url:"/blog/common/",  
+            //返回数据格式为json  
+            dataType: "json",  
+            //请求成功完成后要执行的方法  
+            success: function(tt){ 
+            	var json = eval(tt); //数组
+            	$.each(json, function (index, item) {  
+                    //循环获取数据    
+                    var id = json[index].id;
+                    var title = json[index].title;  
+                    var content = json[index].content;  
+                    var tags = json[index].tags;  
+                    $("#row").append(
+                            '<div class="col-md-4">' +
+                            '<h2>'+ title + '</h2>' +
+                            '<div style="height:100px;overflow:hidden">' + content  + '</div>'+
+                            '<p><a class="btn btn-default" href="#" role="button" onclick="submit('+ id +')">View details &raquo;</a></p>' +
+                            "</div>");  
+                }
+            	 
+            	);
+            	
+            } 
+        })
+        
+
+}); 
+
+
+</script>
+<script type="text/javascript">
+	function submit(id){
+		window.location = "article.html?id="+id;
+	}
+</script>
+</body>
+
+<!-- Mirrored from v3.bootcss.com/examples/jumbotron/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 Nov 2015 09:21:31 GMT -->
+</html>

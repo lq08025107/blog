@@ -16,9 +16,9 @@
 		DELETE FROM PostForm WHERE id=#{id}
 	</select>
 	
-	<select id="createNewBlog" parameterType="blog.domain.PostForm" resultMap="BaseResultMap">
+	<insert id="createNewBlog" parameterType="blog.domain.PostForm">
 		INSERT INTO  PostForm (title, content, tags) VALUES (#{postForm.title}, #{postForm.content}, #{postForm.tags})
-	</select>
+	</insert>
 	
 	<select id="selectBlogById" parameterType="int" resultMap="BaseResultMap">
 		SELECT * FROM PostForm WHERE id=#{id}
